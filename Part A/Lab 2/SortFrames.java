@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
-public class P1 {
+public class SortFrames {
     public static void main(String[] args) {
         ArrayList<int[]> frames= new ArrayList<>();
         Random random=new Random();
