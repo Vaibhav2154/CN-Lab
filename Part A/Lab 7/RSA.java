@@ -1,4 +1,5 @@
 // Write a program for simple RSA algorithm to encrypt and decrypt the data.
+
 import java.math.BigInteger;
 import java.util.Random;
 import java.util.Scanner;
@@ -6,7 +7,6 @@ import java.util.Scanner;
 public class RSA {
 
     //5 components: message(m), p,q,n,phi,e,d
-
     private BigInteger d; // private key
     private BigInteger e; // public key
     private BigInteger n; // modulus OR n=p*q
@@ -27,7 +27,8 @@ public class RSA {
         // Choose public exponent 'e' such that 1 < e < φ(n) and e is coprime to φ(n)
         e = BigInteger.probablePrime(bitLength / 2, random);
 
-        while(phi.gcd(e).intValue() > 1) {
+        // Ensure e and phi(n) are coprime
+        while (phi.gcd(e).intValue() > 1) {
             e = e.add(BigInteger.ONE);
         }
 
@@ -46,25 +47,24 @@ public class RSA {
     public static void main(String[] args) {
         int bitLength = 1024;
         String originalMessage;
-        Scanner sc=new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         RSA rsa = new RSA(bitLength);
 
         System.out.print("Enter a string: ");
-        originalMessage=sc.nextLine();
+        originalMessage = sc.nextLine();
 
         BigInteger message = new BigInteger(originalMessage.getBytes());
         // String->byte array->BigInteger
-        
+
         BigInteger encryptedMessage = rsa.encrypt(message);
         System.out.println("Encrypted message: " + encryptedMessage);
-        
+
         BigInteger decryptedMessage = rsa.decrypt(encryptedMessage);
         System.out.println("Decrypted message: " + new String(decryptedMessage.toByteArray()));
         // BigInteger->byte array->String
     }
 }
-
 
 // Output 
 // Enter a string: ulteriorNewt's got some moves

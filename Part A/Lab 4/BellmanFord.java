@@ -6,6 +6,7 @@
 //bellman ford algorithm for shortest distance from a source node to all the remaining nodes
 
 import java.util.*;
+
 public class BellmanFord {
     private static int N;
     private static int[][] graph;
@@ -37,6 +38,7 @@ public class BellmanFord {
                 }
             }
         }
+        // Run the relaxation one more time if the there is relaxation then negative edge cycle exists
         for (int u = 0; u < N; u++) {
             for (int v = 0; v < N; v++) {
                 if (graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v]) {

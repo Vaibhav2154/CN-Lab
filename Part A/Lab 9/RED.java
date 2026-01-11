@@ -6,52 +6,63 @@ public class RED {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the maximum number of packets:");
+        System.out.print("Enter the maximum number of packets: ");
         int maxPackets = scanner.nextInt();
 
-        System.out.println("Enter the queue size:");
+        System.out.print("Enter the queue size: ");
         int queueSize = scanner.nextInt();
 
-        System.out.println("Enter the maximum drop probability:");
-        double maxProbability = scanner.nextDouble();
+        System.out.print("Enter minimum threshold (min_th): ");
+        int minThreshold = scanner.nextInt();
 
-        System.out.println("Enter the minimum drop probability:");
-        double minProbability = scanner.nextDouble();
+        System.out.print("Enter maximum threshold (max_th): ");
+        int maxThreshold = scanner.nextInt();
 
-        System.out.println("Enter the congestion threshold:");
-        int threshold = scanner.nextInt();
-
-        simulateCongestion(maxPackets, queueSize, maxProbability, minProbability, threshold);
+        simulateRED(maxPackets, queueSize, minThreshold, maxThreshold);
     }
 
-    private static void simulateCongestion(int maxPackets, int queueSize, double maxProbability, double minProbability, int threshold) {
-        Random rand = new Random(System.currentTimeMillis());
+    private static void simulateRED(int maxPackets, int queueSize,
+                                    int minTh, int maxTh) {
+
+        Random rand = new Random();
         int queueLength = 0;
 
-        // Simulate sending packets
         for (int i = 0; i < maxPackets; i++) {
 
-            // Calculate drop probability based on current queue length
-            double dropProbability = calculateDropProbability(queueLength, queueSize, maxProbability, minProbability, threshold);
-
-            // Determine if the packet is dropped or accepted
-            if (queueLength >= threshold && rand.nextDouble() < dropProbability) {
-                System.out.println("Packet dropped (CONGESTION AVOIDANCE)");
-                // Decrement queue length when a packet is dropped
-                queueLength--;
-            } else {
-                System.out.println("Packet accepted " + (i + 1));
-                queueLength++;
+            if (queueLength >= queueSize) {
+                System.out.println("Packet dropped (QUEUE FULL)");
+                continue;
             }
+
+            double dropProbability = calculateDropProbability(
+                    queueLength, minTh, maxTh
+            );
+
+            if (rand.nextDouble() < dropProbability) {
+                System.out.println("Packet dropped (EARLY DROP)");
+            } else {
+                queueLength++;
+                System.out.println("Packet accepted " + (i + 1));
+            }
+            System.out.println("Queue length: " + queueLength +
+                   " | Drop probability: " + dropProbability);
+
         }
     }
 
-    private static double calculateDropProbability(int currentQueueLength, int queueSize, double maxProbability, double minProbability, int threshold) {
-        // Calculate drop probability using linear interpolation
-        double slope = (maxProbability - minProbability) / (queueSize - threshold);
-        return minProbability + slope * (currentQueueLength - threshold);
+    private static double calculateDropProbability(
+            int q, int minTh, int maxTh) {
+
+        if (q < minTh)
+            return 0.0;
+
+        if (q >= maxTh)
+            return 1.0;
+
+        return (double) (q - minTh) / (maxTh - minTh);
     }
 }
+
 
 
 // Enter the maximum number of packets:

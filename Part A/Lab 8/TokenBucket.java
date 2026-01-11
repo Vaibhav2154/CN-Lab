@@ -3,7 +3,6 @@
 /* In this the bucket is filled with constant rate called token_generation_rate untill the bucket is full */
 
 import java.util.Scanner;
-import java.util.*;
 
 public class TokenBucket{
     public static void main(String args[]){

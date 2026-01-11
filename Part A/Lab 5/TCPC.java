@@ -1,34 +1,39 @@
 // CLient side
 
+import java.io.*;
 import java.net.*;
-import java.io.*; 
-  public class TCPC
-    {
-       public static void main(String[] args) throws Exception
-       {
-         Socket socket=new Socket("127.0.01", 4000);
-          System.out.println("Enter the filename");
 
-         BufferedReader keyRead=new BufferedReader(new InputStreamReader(System.in));
-         String fname=keyRead.readLine();
+public class TCPC {
 
-         OutputStream ostream=socket.getOutputStream();
-         PrintWriter pwrite=new PrintWriter(ostream, true);
-         pwrite.println(fname);
+    public static void main(String[] args) throws Exception {
+        Socket socket = new Socket("127.0.0.1", 4000);
+        System.out.println("Enter the filename");
 
-         InputStream istream=socket.getInputStream();
-         BufferedReader socketRead=new BufferedReader(new InputStreamReader(istream));
+        // Read file name from user
+        BufferedReader keyRead = new BufferedReader(new InputStreamReader(System.in));
+        String fname = keyRead.readLine();
 
-         String str;
+        // Get the socket's output stream to send data to server
+        OutputStream ostream = socket.getOutputStream();
+        // Send file name to server
+        PrintWriter pwrite = new PrintWriter(ostream, true);
+        pwrite.println(fname);
 
-         while((str=socketRead.readLine())!=null)
-           {
-              System.out.println(str);
-           }
+        // Get the socket's input stream to receive data from server
+        InputStream istream = socket.getInputStream();
+        // Read the file content sent by server
+        BufferedReader socketRead = new BufferedReader(new InputStreamReader(istream));
 
-           //Cleaning up resources
-         pwrite.close();
-         socketRead.close();
-         keyRead.close();
-       }
-    }       
+        String str;
+
+        // Display the file content
+        while ((str = socketRead.readLine()) != null) {
+            System.out.println(str);
+        }
+
+        //Cleaning up resources
+        pwrite.close();
+        socketRead.close();
+        keyRead.close();
+    }
+}
