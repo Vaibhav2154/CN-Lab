@@ -1,5 +1,7 @@
-POC Makeup Test will be conducted on Monday at 2:30 PM. The syllabus for the test will be from the First and Second Internals question papers./*Write a program to find the shortest path between vertices using 
-bellman-ford algorithm.*/
+// Write a program to find the shortest path between vertices using bellman-ford algorithm.
+
+
+// bellman-ford algorithm.
 
 //bellman ford algorithm for shortest distance from a source node to all the remaining nodes
 
