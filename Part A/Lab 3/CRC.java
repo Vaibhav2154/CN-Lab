@@ -15,14 +15,15 @@ public class CRC {
         System.out.print("Enter generator: ");
         String generator = sc.nextLine();
 
-        int data[] = new int[message.length() + generator.length() - 1];
+        int data[] = new int[message.length() + generator.length()-1];
         int divisor[] = new int[generator.length()];
 
-        for (int i = 0; i < message.length(); i++)
-            data[i] = Integer.parseInt(message.charAt(i) + "");
+        for (int i = 0; i < message.length(); i++){
+            data[i] = message.charAt(i) - '0';
+        }
 
         for (int i = 0; i < generator.length(); i++)
-            divisor[i] = Integer.parseInt(generator.charAt(i) + "");
+            divisor[i] = generator.charAt(i) - '0';
 
         // Calculation of CRC
         for (int i = 0; i < message.length(); i++) {
@@ -33,8 +34,11 @@ public class CRC {
         }
 
         // Append the remainder to the original message
-        for (int i = 0; i < message.length(); i++)
-            data[i] = Integer.parseInt(message.charAt(i) + "");
+        for (int i = 0; i < message.length(); i++){
+            data[i] = message.charAt(i) - '0';
+
+        }
+
 
         // Display CRC
         System.out.print("The checksum code is: ");
@@ -53,10 +57,10 @@ public class CRC {
         divisor = new int[generator.length()];
 
         for (int i = 0; i < message.length(); i++)
-            data[i] = Integer.parseInt(message.charAt(i) + "");
+            data[i] = message.charAt(i) - '0';
 
         for (int i = 0; i < generator.length(); i++)
-            divisor[i] = Integer.parseInt(generator.charAt(i) + "");
+            divisor[i] = generator.charAt(i) - '0';
 
         // Calculation of remainder
         for (int i = 0; i < message.length(); i++) {
