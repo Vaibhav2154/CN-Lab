@@ -8,52 +8,69 @@
 import java.util.*;
 
 public class BellmanFord {
-    private static int N;
-    private static int[][] graph;
+
+    static final int INF = 999999;
+    static int N;
+    static int[][] graph;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the number of Vertices : ");
+
+        System.out.print("Enter the number of Vertices: ");
         N = sc.nextInt();
-        System.out.println("Enter the Weight Matrix of Graph");
+
         graph = new int[N][N];
-        for (int i = 0; i < N; i++)
-            for (int j = 0; j < N; j++)
+        System.out.println("Enter the Weight Matrix of Graph (use " + INF + " for no edge):");
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
                 graph[i][j] = sc.nextInt();
-        System.out.print("Enter the Source Vertex : ");
+            }
+        }
+
+        System.out.print("Enter the Source Vertex: ");
         int source = sc.nextInt();
+
         bellmanFord(source - 1);
     }
 
-    public static void bellmanFord(int src) {
+    static void bellmanFord(int src) {
         int[] dist = new int[N];
-        Arrays.fill(dist, Integer.MAX_VALUE);
+        Arrays.fill(dist, INF);
         dist[src] = 0;
-        for (int i = 0; i < N; i++) {
+
+        // Step 1: Relax edges V-1 times
+        for (int i = 0; i < N - 1; i++) {
             for (int u = 0; u < N; u++) {
                 for (int v = 0; v < N; v++) {
-                    if (graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v]) {
+                    if (graph[u][v] != INF &&
+                        dist[u] != INF &&
+                        dist[u] + graph[u][v] < dist[v]) {
                         dist[v] = dist[u] + graph[u][v];
                     }
                 }
             }
         }
-        // Run the relaxation one more time if the there is relaxation then negative edge cycle exists
+
+        // Step 2: Check for negative weight cycle
         for (int u = 0; u < N; u++) {
             for (int v = 0; v < N; v++) {
-                if (graph[u][v] != 0 && dist[u] != Integer.MAX_VALUE && dist[u] + graph[u][v] < dist[v]) {
+                if (graph[u][v] != INF &&
+                    dist[u] != INF &&
+                    dist[u] + graph[u][v] < dist[v]) {
                     System.out.println("Negative weight cycle detected.");
                     return;
                 }
             }
         }
-        printSolution(dist);
-    }
 
-    public static void printSolution(int[] dist) {
-        System.out.println("Vertex \t Distance from Source");
+        // Step 3: Print result
+        System.out.println("Vertex\tDistance from Source");
         for (int i = 0; i < N; i++) {
-            System.out.println((i + 1) + "\t\t" + dist[i]);
+            if (dist[i] == INF)
+                System.out.println((i + 1) + "\tINF");
+            else
+                System.out.println((i + 1) + "\t" + dist[i]);
         }
     }
 }

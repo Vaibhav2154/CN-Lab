@@ -50,10 +50,8 @@ public class CRC {
         // Check for input CRC code
         System.out.print("Enter checksum code: ");
         message = sc.nextLine();
-        System.out.print("Enter generator: ");
-        generator = sc.nextLine();
 
-        data = new int[message.length() + generator.length() - 1];
+        data = new int[message.length()];
         divisor = new int[generator.length()];
 
         for (int i = 0; i < message.length(); i++)
@@ -63,7 +61,7 @@ public class CRC {
             divisor[i] = generator.charAt(i) - '0';
 
         // Calculation of remainder
-        for (int i = 0; i < message.length(); i++) {
+        for (int i = 0; i <= message.length() - divisor.length; i++) {
             if (data[i] == 1)
                 for (int j = 0; j < divisor.length; j++)
                     data[i + j] ^= divisor[j];
