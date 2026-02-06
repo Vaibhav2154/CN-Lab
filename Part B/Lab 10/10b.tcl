@@ -53,10 +53,8 @@ ms"
 
 #Create two ping agents and attach them to n(0) and n(5)
 set p0 [new Agent/Ping]
-$p0 set class_ 1
 $ns attach-agent $n(0) $p0
 set p1 [new Agent/Ping]
-$p1 set class_ 1
 $ns attach-agent $n(5) $p1
 $ns connect $p0 $p1
 
@@ -68,7 +66,6 @@ $ns duplex-link-op $n(2) $n(3) queuePos 0.5
 #Create Congestion
 #Generate a Huge CBR traffic between n(2) and n(4)
 set tcp0 [new Agent/TCP]
-$tcp0 set class_ 2
 $ns attach-agent $n(2) $tcp0
 set sink0 [new Agent/TCPSink]
 $ns attach-agent $n(4) $sink0
