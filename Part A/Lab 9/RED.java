@@ -39,13 +39,12 @@ public class RED {
             );
 
             if (rand.nextDouble() < dropProbability) {
-                System.out.println("Packet dropped (EARLY DROP)");
+                System.out.print("Packet dropped (EARLY DROP)");
             } else {
                 queueLength++;
-                System.out.println("Packet accepted " + (i + 1));
+                System.out.print("Packet accepted " + (i + 1));
             }
-            System.out.println("Queue length: " + queueLength +
-                   " | Drop probability: " + dropProbability);
+            System.out.println(" Queue length: " + queueLength + " | Drop probability: " + dropProbability);
 
         }
     }
@@ -64,114 +63,57 @@ public class RED {
 }
 
 
-
-// Enter the maximum number of packets:
-// 100
-// Enter the queue size:
-// 20
-// Enter the maximum drop probability:
-// 0.8
-// Enter the minimum drop probability:
-// 0.2
-// Enter the congestion threshold:
-// 10
-// Packet accepted 1
-// Packet accepted 2
-// Packet accepted 3
-// Packet accepted 4
-// Packet accepted 5
-// Packet accepted 6
-// Packet accepted 7
-// Packet accepted 8
-// Packet accepted 9
-// Packet accepted 10
-// Packet accepted 11
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 13
-// Packet accepted 14
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 17
-// Packet accepted 18
-// Packet accepted 19
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 21
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 23
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 25
-// Packet accepted 26
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 31
-// Packet accepted 32
-// Packet accepted 33
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 35
-// Packet accepted 36
-// Packet accepted 37
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 39
-// Packet accepted 40
-// Packet accepted 41
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 44
-// Packet accepted 45
-// Packet accepted 46
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 48
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 51
-// Packet accepted 52
-// Packet accepted 53
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 59
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 62
-// Packet accepted 63
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 65
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 67
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 69
-// Packet accepted 70
-// Packet accepted 71
-// Packet accepted 72
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 77
-// Packet accepted 78
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 82
-// Packet accepted 83
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 85
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 87
-// Packet accepted 88
-// Packet accepted 89
-// Packet accepted 90
-// Packet accepted 91
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 97
-// Packet dropped (CONGESTION AVOIDANCE)
-// Packet accepted 99
-// Packet dropped (CONGESTION AVOIDANCE)
+// Enter the maximum number of packets: 50
+// Enter the queue size: 60
+// Enter minimum threshold (min_th): 30
+// Enter maximum threshold (max_th): 45
+// Packet accepted 1 Queue length: 1 | Drop probability: 0.0
+// Packet accepted 2 Queue length: 2 | Drop probability: 0.0
+// Packet accepted 3 Queue length: 3 | Drop probability: 0.0
+// Packet accepted 4 Queue length: 4 | Drop probability: 0.0
+// Packet accepted 5 Queue length: 5 | Drop probability: 0.0
+// Packet accepted 6 Queue length: 6 | Drop probability: 0.0
+// Packet accepted 7 Queue length: 7 | Drop probability: 0.0
+// Packet accepted 8 Queue length: 8 | Drop probability: 0.0
+// Packet accepted 9 Queue length: 9 | Drop probability: 0.0
+// Packet accepted 10 Queue length: 10 | Drop probability: 0.0
+// Packet accepted 11 Queue length: 11 | Drop probability: 0.0
+// Packet accepted 12 Queue length: 12 | Drop probability: 0.0
+// Packet accepted 13 Queue length: 13 | Drop probability: 0.0
+// Packet accepted 14 Queue length: 14 | Drop probability: 0.0
+// Packet accepted 15 Queue length: 15 | Drop probability: 0.0
+// Packet accepted 16 Queue length: 16 | Drop probability: 0.0
+// Packet accepted 17 Queue length: 17 | Drop probability: 0.0
+// Packet accepted 18 Queue length: 18 | Drop probability: 0.0
+// Packet accepted 19 Queue length: 19 | Drop probability: 0.0
+// Packet accepted 20 Queue length: 20 | Drop probability: 0.0
+// Packet accepted 21 Queue length: 21 | Drop probability: 0.0
+// Packet accepted 22 Queue length: 22 | Drop probability: 0.0
+// Packet accepted 23 Queue length: 23 | Drop probability: 0.0
+// Packet accepted 24 Queue length: 24 | Drop probability: 0.0
+// Packet accepted 25 Queue length: 25 | Drop probability: 0.0
+// Packet accepted 26 Queue length: 26 | Drop probability: 0.0
+// Packet accepted 27 Queue length: 27 | Drop probability: 0.0
+// Packet accepted 28 Queue length: 28 | Drop probability: 0.0
+// Packet accepted 29 Queue length: 29 | Drop probability: 0.0
+// Packet accepted 30 Queue length: 30 | Drop probability: 0.0
+// Packet accepted 31 Queue length: 31 | Drop probability: 0.0
+// Packet accepted 32 Queue length: 32 | Drop probability: 0.06666666666666667
+// Packet dropped (EARLY DROP) Queue length: 32 | Drop probability: 0.13333333333333333
+// Packet accepted 34 Queue length: 33 | Drop probability: 0.13333333333333333
+// Packet accepted 35 Queue length: 34 | Drop probability: 0.2
+// Packet accepted 36 Queue length: 35 | Drop probability: 0.26666666666666666
+// Packet dropped (EARLY DROP) Queue length: 35 | Drop probability: 0.3333333333333333
+// Packet accepted 38 Queue length: 36 | Drop probability: 0.3333333333333333
+// Packet accepted 39 Queue length: 37 | Drop probability: 0.4
+// Packet accepted 40 Queue length: 38 | Drop probability: 0.4666666666666667
+// Packet dropped (EARLY DROP) Queue length: 38 | Drop probability: 0.5333333333333333
+// Packet accepted 42 Queue length: 39 | Drop probability: 0.5333333333333333
+// Packet dropped (EARLY DROP) Queue length: 39 | Drop probability: 0.6
+// Packet accepted 44 Queue length: 40 | Drop probability: 0.6
+// Packet dropped (EARLY DROP) Queue length: 40 | Drop probability: 0.6666666666666666
+// Packet accepted 46 Queue length: 41 | Drop probability: 0.6666666666666666
+// Packet dropped (EARLY DROP) Queue length: 41 | Drop probability: 0.7333333333333333
+// Packet dropped (EARLY DROP) Queue length: 41 | Drop probability: 0.7333333333333333
+// Packet dropped (EARLY DROP) Queue length: 41 | Drop probability: 0.7333333333333333
+// Packet dropped (EARLY DROP) Queue length: 41 | Drop probability: 0.7333333333333333

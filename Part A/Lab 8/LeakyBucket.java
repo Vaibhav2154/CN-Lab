@@ -57,7 +57,7 @@ public class LeakyBucket{
 // Enter bucket size
 // 6
 // Enter the output packet size
-// 2
+// 2·
 // Enter the number of requests
 // 5
 // Enter the number of packets sent per request:
