@@ -1,7 +1,5 @@
 // Write a program to sort frames using appropriate sorting techniques
 import java.util.*;
-import java.io.*;
-import java.net.*;
 
 public class SortFrames {
     public static void main(String[] args) {
