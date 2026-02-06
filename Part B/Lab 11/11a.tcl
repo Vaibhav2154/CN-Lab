@@ -11,7 +11,6 @@ $ns color 2 Red
 # Open trace and NAM trace file
 set ntrace [open prog5.tr w]
 $ns trace-all $ntrace
-
 set namfile [open prog5.nam w]
 $ns namtrace-all $namfile
 
@@ -35,12 +34,13 @@ proc Finish {} {
     exit 0
 }
 
+
 # Plot Window Procedure
 proc PlotWindow {tcpSource file} {
     global ns
 
     set time 0.1
-    set now [$ns now]
+    set now [$ns now] 
     set cwnd [$tcpSource set cwnd_]
     
     puts $file "$now $cwnd"
@@ -58,22 +58,15 @@ $ns duplex-link $n(1) $n(2) 2Mb 10ms DropTail
 $ns duplex-link $n(2) $n(3) 0.6Mb 100ms DropTail
 
 # Nodes n(3), n(4), and n(5) are considered in a LAN
-set lan [$ns newLan "$n(3) $n(4) $n(5)" 0.5Mb 40ms LL Queue/DropTail MAC/802_3 Channel]
+# set lan [$ns newLan "$n(3) $n(4) $n(5)" 0.5Mb 40ms LL Queue/DropTail MAC/802_3 Channel]
+$ns make-lan "$n(3) $n(4) $n(5)" 0.5Mb 40ms
 
-# Orientation to the nodes
-$ns duplex-link-op $n(0) $n(2) orient right-down
-$ns duplex-link-op $n(1) $n(2) orient right-up
-$ns duplex-link-op $n(2) $n(3) orient right
+
 
 # Setup queue between n(2) and n(3) and monitor the queue
 $ns queue-limit $n(2) $n(3) 20
 $ns duplex-link-op $n(2) $n(3) queuePos 0.5
 
-# # Set error model on link n(2) to n(3)
-# set loss_module [new ErrorModel]
-# $loss_module ranvar [new RandomVariable/Uniform]
-# $loss_module drop-target [new Agent/Null]
-# $ns lossmodel $loss_module $n(2) $n(3)
 
 # Set up the TCP connection between n(0) and n(4)
 set tcp0 [new Agent/TCP/Newreno]
@@ -89,6 +82,12 @@ $ns connect $tcp0 $sink0
 set ftp0 [new Application/FTP]
 $ftp0 attach-agent $tcp0
 $ftp0 set type_ FTP
+
+# Set up another TCP connection bet# Orientation to the nodes
+$ns duplex-link-op $n(0) $n(2) orient right-down
+$ns duplex-link-op $n(1) $n(2) orient right-up
+$ns duplex-link-op $n(2) $n(3) orient right
+
 
 # Set up another TCP connection between n(5) and n(1)
 set tcp1 [new Agent/TCP/Newreno]
