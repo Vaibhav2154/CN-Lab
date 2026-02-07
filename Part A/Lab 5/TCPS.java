@@ -20,17 +20,18 @@ public class TCPS {
         Socket clientSocket = socket.accept();
 
         System.out.println("Connection Is successful and waiting for the client request");
+
         // Get input stream from the client to read the requested filename
         InputStream istream = clientSocket.getInputStream();
         BufferedReader fileRead = new BufferedReader(new InputStreamReader(istream));
-
+        
         // Read filename sent by the client
         String fname = fileRead.readLine();
         // Open the requested file for reading
         BufferedReader ContentRead = new BufferedReader(new FileReader(fname));
+
         // Get output stream to send file contents back to client
         OutputStream ostream = clientSocket.getOutputStream();
-
         PrintWriter pwrite = new PrintWriter(ostream, true);
 
         String str;
