@@ -1,3 +1,4 @@
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -22,7 +23,7 @@ public class RED {
     }
 
     private static void simulateRED(int maxPackets, int queueSize,
-                                    int minTh, int maxTh) {
+            int minTh, int maxTh) {
 
         Random rand = new Random();
         int queueLength = 0;
@@ -52,16 +53,17 @@ public class RED {
     private static double calculateDropProbability(
             int q, int minTh, int maxTh) {
 
-        if (q < minTh)
+        if (q < minTh) {
             return 0.0;
+        }
 
-        if (q >= maxTh)
+        if (q >= maxTh) {
             return 1.0;
+        }
 
         return (double) (q - minTh) / (maxTh - minTh);
     }
 }
-
 
 // Enter the maximum number of packets: 50
 // Enter the queue size: 60
