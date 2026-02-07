@@ -21,11 +21,7 @@ public class CRC {
         for (int i = 0; i < message.length(); i++){
             data[i] = message.charAt(i) - '0';
         }
-        System.out.print("Data after appending zeros: ");
-        for (int i = 0; i < data.length; i++)
-            System.out.print(data[i]);
-        System.out.println("Lenght of data: " + data.length);
-
+        
         for (int i = 0; i < generator.length(); i++)
             divisor[i] = generator.charAt(i) - '0';
 
